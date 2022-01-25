@@ -19,6 +19,12 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - uses: actions/setup-java@v2
+      with:
+        java-version: 11
+        distribution: adopt
+        server-id: github
+        settings-path: ${{ github.workspace }}
     - run: |
         docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli generate \
         -i local/${{ inputs.swagger-doc }} \
