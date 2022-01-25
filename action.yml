@@ -1,0 +1,45 @@
+name: 'Generate Java Client'
+description: 'Generates a Java client from a swagger document'
+inputs:
+  swagger-doc:
+    description: 'Path to the swagger document'
+    required: true
+  group-id:
+    description: 'Maven group ID'
+    required: true
+  artifact-id:
+    description: 'Maven artifact ID'
+    required: true
+  version:
+    description: 'Maven artifact version'
+    required: true
+  package-name:
+    description: 'Java package name (appended to group-id)'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli generate \
+        -i local/${{ inputs.swagger-doc }} \
+        --artifact-id ${{ inputs.artifact-id }} \
+        --group-id ${{ inputs.group-id }} \
+        --api-package com.omig.${{ inputs.package-name }}.controllers \
+        --model-package com.omig.${{ inputs.package-name }}.model \
+        --invoker-package com.omig.${{ inputs.package-name }} \
+        -l java \
+        -o /local \
+        -DdateLibrary=java8,hideGenerationTimestamp=true
+      shell: bash
+
+    - run: |
+        sudo chmod -R a+w .
+        mvn versions:set -DnewVersion=${{ inputs.version }}
+        mvn -B package
+        mvn versions:commit
+      shell: bash
+
+    - run: |
+          mvn -B -s ${{ github.workspace }}/settings.xml deploy \
+          -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/$GITHUB_REPOSITORY
+      shell: bash
