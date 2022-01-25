@@ -1,0 +1,26 @@
+name: Check PR
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, labeled, unlabeled]
+
+jobs:
+  change_type:
+    name: Check for change type label(s)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jesusvasquez333/verify-pr-label-action@v1.4.0
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          valid-labels: 'Change - bugfix, Change - dependencies, Change - enhancement, Change - maintenance, Change - documentation, Change - feature, Change - ci'
+          disable-reviews: true
+
+  change_version:
+    name: Check for Semver label
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jesusvasquez333/verify-pr-label-action@v1.4.0
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          valid-labels: 'Semver - major, Semver - minor, Semver - patch'
+          disable-reviews: true

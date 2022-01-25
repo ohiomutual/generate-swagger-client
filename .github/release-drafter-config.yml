@@ -1,0 +1,38 @@
+name-template: 'v$RESOLVED_VERSION - Description of Release'
+tag-template: 'v$RESOLVED_VERSION'
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'Change - feature'
+      - 'Change - enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'Change - bugfix'
+  - title: '🧰 Maintenance'
+    labels:
+      - 'Change - maintenance'
+      - 'Change - dependencies'
+exclude-labels:
+  - 'Change - ci'
+  - 'exclude from release notes'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+prerelease: true
+version-resolver:
+  major:
+    labels:
+      - 'Semver - major'
+  minor:
+    labels:
+      - 'Semver - minor'
+  patch:
+    labels:
+      - 'Semver - patch'
+  default: patch
+template: |  
+  ## All Changes
+
+  $CHANGES
+
+  ### Contributors
+
+  $CONTRIBUTORS
