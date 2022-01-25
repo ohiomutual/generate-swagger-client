@@ -16,15 +16,20 @@ inputs:
   package-name:
     description: 'Java package name (appended to group-id)'
     required: true
+  templates:
+    description: 'Path to swagger codegen templates directory'
+    required: false
 runs:
   using: 'composite'
   steps:
+
     - uses: actions/setup-java@v2
       with:
         java-version: 11
         distribution: adopt
         server-id: github
         settings-path: ${{ github.workspace }}
+
     - run: |
         docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli generate \
         -i local/${{ inputs.swagger-doc }} \
@@ -35,6 +40,7 @@ runs:
         --invoker-package com.omig.${{ inputs.package-name }} \
         -l java \
         -o /local \
+        $( [[ "${{ inputs.templates }}" != "" ]] && printf %s '-t /local/${{ inputs.templates }}' ) \
         -DdateLibrary=java8,hideGenerationTimestamp=true
       shell: bash
 
