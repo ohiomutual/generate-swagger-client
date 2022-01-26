@@ -32,11 +32,11 @@ runs:
   steps:
 
     - name: Validate language
-      if: ${{ contains(fromJson('["java", "typescript-fetch"]'), inputs.language) }}
+      if: ${{ !contains(fromJson('["java", "typescript-fetch"]'), inputs.language) }}
       uses: actions/github-script@v3
       with:
         script: |
-          core.setFailed('Specific language is not supported')
+          core.setFailed('Specified language is not supported')
 
     # Java
     - if: ${{ inputs.language == 'java' }}
