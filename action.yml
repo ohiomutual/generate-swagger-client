@@ -39,9 +39,9 @@ runs:
         -i local/${{ inputs.swagger-doc }} \
         --artifact-id ${{ inputs.artifact-id }} \
         --group-id ${{ inputs.group-id }} \
-        --api-package com.omig.${{ inputs.package-name }}.controllers \
-        --model-package com.omig.${{ inputs.package-name }}.model \
-        --invoker-package com.omig.${{ inputs.package-name }} \
+        --api-package ${{ inputs.group-id }}.${{ inputs.package-name }}.controllers \
+        --model-package ${{ inputs.group-id }}.${{ inputs.package-name }}.model \
+        --invoker-package ${{ inputs.group-id }}.${{ inputs.package-name }} \
         -l java \
         -o /local \
         $( [[ "${{ inputs.templates }}" != "" ]] && printf %s '-t /local/${{ inputs.templates }}' ) \
