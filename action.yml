@@ -13,16 +13,17 @@ inputs:
   version:
     description: 'Maven artifact version'
     required: true
+  templates:
+    description: 'Path to swagger codegen templates directory'
+    required: false
   package-name:
     description: 'Java package name (appended to group-id)'
-    required: true
+    required: false
+    default: client
   java-date-library:
     description: 'Java date library for Swagger Codegen'
     required: false
     default: java8
-  templates:
-    description: 'Path to swagger codegen templates directory'
-    required: false
 runs:
   using: 'composite'
   steps:
