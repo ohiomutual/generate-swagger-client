@@ -18,13 +18,14 @@ steps:
 
 ### Inputs
 
-| Input        | Description                                 | Required |
-| ------------ | ------------------------------------------- | -------- |
-| swagger-doc  | Relative path to the swagger document       | YES      |
-| group-id     | Maven groupId value                         | YES      |
-| artifact-id  | Maven artifactId value                      | YES      |
-| version      | Maven version value                         | YES      |
-| package-name | Java package name (appended to group-id)    | YES      |
-| templates    | Relative path to swagger template directory | NO       |
+| Input             | Description                                 | Required |
+| ----------------- | ------------------------------------------- | -------- |
+| swagger-doc       | Relative path to the swagger document       | YES      |
+| group-id          | Maven groupId value                         | YES      |
+| artifact-id       | Maven artifactId value                      | YES      |
+| version           | Maven version value                         | YES      |
+| package-name      | Java package name (appended to group-id)    | YES      |
+| java-date-library | e.g. ```java7```, ```java8```               | YES      |
+| templates         | Relative path to swagger template directory | NO       |
 
 _Note: The ```GITHUB_TOKEN``` environment variable is required to publish the package to your repository's Packages_
