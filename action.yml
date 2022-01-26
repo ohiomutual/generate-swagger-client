@@ -16,6 +16,9 @@ inputs:
   package-name:
     description: 'Java package name (appended to group-id)'
     required: true
+  java-date-library:
+    description: 'Java date library for Swagger Codegen'
+    required: true
   templates:
     description: 'Path to swagger codegen templates directory'
     required: false
@@ -41,7 +44,7 @@ runs:
         -l java \
         -o /local \
         $( [[ "${{ inputs.templates }}" != "" ]] && printf %s '-t /local/${{ inputs.templates }}' ) \
-        -DdateLibrary=java8,hideGenerationTimestamp=true
+        -DdateLibrary=${{ inputs.java-date-library }},hideGenerationTimestamp=true
       shell: bash
 
     - run: |
