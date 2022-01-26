@@ -6,14 +6,14 @@ GitHub Action used to generate a Java client based on a Swagger document and pub
 
 ```yaml
 steps:
-  - uses: ohiomutual/generate-java-client@v1
+  - uses: ohiomutual/generate-swagger-client@v1
     with:
       swagger-doc: swagger/swagger.json
+      language: java
       group-id: com.example
       artifact-id: my-service-client
       version: 1.0.0
       package-name: myService
-      java-date-library: java8
     env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
@@ -22,9 +22,10 @@ steps:
 | Input             | Description                                | Required | Default       |
 | ----------------- | ------------------------------------------ | -------- | ------------- |
 | swagger-doc       | Relative path to the swagger document      | YES      | N/A           |
-| group-id          | Maven groupId value                        | YES      | N/A           |
-| artifact-id       | Maven artifactId value                     | YES      | N/A           |
-| version           | Maven version value                        | YES      | N/A           |
+| language          | e.g. ```java```, ```typescript-fetch```    | YES      | N/A           |
+| group-id          | Package groupId/owner                      | YES      | N/A           |
+| artifact-id       | Package artifact name                      | YES      | N/A           |
+| version           | Package version                            | YES      | N/A           |
 | package-name      | Java package name (appended to group-id)   | NO       | ```client```  |
 | java-date-library | e.g. ```java7```, ```java8```              | NO       | ```java8```   |
 | templates         | Relative path to swagger template directory| NO       | N/A           |
