@@ -13,6 +13,7 @@ steps:
       artifact-id: my-service-client
       version: 1.0.0
       package-name: myService
+      java-date-library: java8
     env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
