@@ -18,7 +18,8 @@ inputs:
     required: true
   java-date-library:
     description: 'Java date library for Swagger Codegen'
-    required: true
+    required: false
+    default: java8
   templates:
     description: 'Path to swagger codegen templates directory'
     required: false
