@@ -68,7 +68,7 @@ runs:
         mvn versions:set -DnewVersion=${{ inputs.version }}
         mvn -B package
         mvn versions:commit
-        mvn -B -s ${{ github.workspace }}/settings.xml deploy \
+        mvn -X -B -s ${{ github.workspace }}/settings.xml deploy \
           -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/$GITHUB_REPOSITORY
       shell: bash
 
