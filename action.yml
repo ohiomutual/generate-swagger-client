@@ -68,9 +68,21 @@ runs:
         mvn versions:set -DnewVersion=${{ inputs.version }}
         mvn -B package
         mvn versions:commit
-        mvn -X -B -s ${{ github.workspace }}/settings.xml deploy \
+        mvn -B -s ${{ github.workspace }}/settings.xml deploy \
           -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/$GITHUB_REPOSITORY
       shell: bash
+    
+    - name: Upload settings.xml
+        uses: actions/upload-artifact@v2
+        with:
+          name: settings
+          path: ${{ github.workspace }}/settings.xml
+          
+    - name: Upload pom.xml
+        uses: actions/upload-artifact@v2
+        with:
+          name: pom
+          path: ${{ github.workspace }}/pom.xml
 
 
     # Typescript-fetch
