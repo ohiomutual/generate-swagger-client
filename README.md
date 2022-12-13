@@ -1,6 +1,6 @@
-# generate-java-client
+# generate-swagger-client
 
-GitHub Action used to generate a Java client based on a Swagger document and publish it as a Maven package in your repo.
+GitHub Action used to generate clients based on a Swagger document and publish it as a Maven package in your repo.
 
 ## Usage
 
