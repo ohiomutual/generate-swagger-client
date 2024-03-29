@@ -56,10 +56,9 @@ runs:
         --api-package ${{ inputs.group-id }}.${{ inputs.package-name }}.controllers \
         --model-package ${{ inputs.group-id }}.${{ inputs.package-name }}.model \
         --invoker-package ${{ inputs.group-id }}.${{ inputs.package-name }} \
-        -l java \
+        -g java \
         -o /local \
         $( [[ "${{ inputs.templates }}" != "" ]] && printf %s '-t /local/${{ inputs.templates }}' ) \
-        -DdateLibrary=${{ inputs.java-date-library }},hideGenerationTimestamp=true
       shell: bash
 
     - if: ${{ inputs.language == 'java' }}
