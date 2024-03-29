@@ -49,7 +49,7 @@ runs:
 
     - if: ${{ inputs.language == 'java' }}
       run: |
-        docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli generate \
+        docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
         -i local/${{ inputs.swagger-doc }} \
         --artifact-id ${{ inputs.artifact-id }} \
         --group-id ${{ inputs.group-id }} \
@@ -81,7 +81,7 @@ runs:
 
     - if: ${{ inputs.language == 'typescript-fetch' }}
       run: |
-        docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli generate \
+        docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
         -i local/${{ inputs.swagger-doc }} \
         -l typescript-fetch \
         -o /local \
