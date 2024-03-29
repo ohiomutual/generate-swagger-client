@@ -56,6 +56,7 @@ runs:
         --api-package ${{ inputs.group-id }}.${{ inputs.package-name }}.controllers \
         --model-package ${{ inputs.group-id }}.${{ inputs.package-name }}.model \
         --invoker-package ${{ inputs.group-id }}.${{ inputs.package-name }} \
+        --library apache-httpclient
         -g java \
         -o /local \
       shell: bash
