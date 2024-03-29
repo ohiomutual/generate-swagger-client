@@ -49,7 +49,7 @@ runs:
 
     - if: ${{ inputs.language == 'java' }}
       run: |
-        docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
+        docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v7.4.0 generate \
         -i local/${{ inputs.swagger-doc }} \
         --artifact-id ${{ inputs.artifact-id }} \
         --group-id ${{ inputs.group-id }} \
@@ -58,7 +58,6 @@ runs:
         --invoker-package ${{ inputs.group-id }}.${{ inputs.package-name }} \
         -g java \
         -o /local \
-        $( [[ "${{ inputs.templates }}" != "" ]] && printf %s '-t /local/${{ inputs.templates }}' ) \
       shell: bash
 
     - if: ${{ inputs.language == 'java' }}
