@@ -49,7 +49,7 @@ runs:
 
     - if: ${{ inputs.language == 'java' }}
       run: |
-        docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v7.4.0 generate \
+        docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v7.5.0 generate \
         -i local/${{ inputs.swagger-doc }} \
         --artifact-id ${{ inputs.artifact-id }} \
         --group-id ${{ inputs.group-id }} \
