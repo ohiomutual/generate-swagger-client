@@ -80,13 +80,12 @@ runs:
 
     - if: ${{ inputs.language == 'typescript-fetch' }}
       run: |
-        docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v7.4.0 generate \
+        docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v7.5.0 generate \
         -i local/${{ inputs.swagger-doc }} \
         -g typescript-fetch \
         -o /local \
         $( [[ "${{ inputs.templates }}" != "" ]] && printf %s '-t /local/${{ inputs.templates }}' ) \
-        --npmName=${{ inputs.group-id }}/${{ inputs.artifact-id }} \
-        --npmVersion=${{ inputs.version }}
+        --additional-properties=npmName=${{ inputs.group-id }}/${{ inputs.artifact-id }},npmVersion=${{ inputs.version }}
         sudo chmod a+w package.json
         echo $(cat package.json | jq -r --arg REPO "$GITHUB_REPOSITORY" '.repository = {type: "git", url: ("https://github.com/" + $REPO + ".git")}') > package.json
       shell: bash
