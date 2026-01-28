@@ -57,6 +57,7 @@ runs:
         --model-package ${{ inputs.group-id }}.${{ inputs.package-name }}.model \
         --invoker-package ${{ inputs.group-id }}.${{ inputs.package-name }} \
         --library okhttp-gson \
+        --additional-properties=disallowAdditionalPropertiesIfNotPresent=false \
         $( [[ "${{ inputs.templates }}" != "" ]] && printf %s '-t /local/${{ inputs.templates }}' ) \
         -g java \
         -o /local \
